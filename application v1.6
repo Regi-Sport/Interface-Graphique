@@ -1,0 +1,476 @@
+package regisport;
+
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.time.LocalDate;
+
+import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
+import javafx.scene.image.Image;
+import javafx.stage.Stage;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.scene.Group;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.effect.MotionBlur;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import javafx.scene.*;
+import javafx.scene.shape.Rectangle;
+
+public class regisport_test extends Application {
+
+	@Override
+	public void start(Stage primaryStage) throws Exception {
+		primaryStage.setTitle("Regisport");
+		primaryStage.getIcons().add(new Image("C:\\Users\\Julien\\eclipse-workspace\\regisport\\src\\regisport/icon.png"));
+//		primaryStage.setWidth(600);
+//		primaryStage.setHeight(600);
+		
+		
+        FlowPane root = new FlowPane();
+        root.setPadding(new Insets(10));
+        root.setHgap(10);
+        root.setVgap(10);
+        
+        
+		Image imagefond = new Image(new FileInputStream("C:\\Users\\Julien\\eclipse-workspace\\regisport\\src\\regisport/logo_gris.png"));
+		BackgroundImage fondg = new BackgroundImage(imagefond,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.CENTER,
+                BackgroundSize.DEFAULT);
+		Background fondgr = new Background(fondg);
+        
+		
+        FlowPane comp1 = new FlowPane();
+        comp1.setPadding(new Insets(10));
+        comp1.setHgap(10);
+        comp1.setVgap(10);
+        comp1.setBackground(fondgr);
+        GridPane comp2 = new GridPane();
+        comp2.setPadding(new Insets(10));
+        comp2.setHgap(10);
+        comp2.setVgap(10);
+        comp2.setBackground(fondgr);
+        Scene scene1 = new Scene(comp1, 800, 600);
+        Scene sceneCompAdd = new Scene(comp2, 800, 600);
+        //scene1.getStylesheets().add("C:\\Users\\Julien\\eclipse-workspace\\regisport\\src\\regisport/style.css");
+		
+        //___________________________________________________________________________________
+        //Image-Accueil
+        //___________________________________________________________________________________
+        
+		Image imagemain = new Image(new FileInputStream("C:\\Users\\Julien\\eclipse-workspace\\regisport\\src\\regisport/Logo.png"));
+		BackgroundImage bImg = new BackgroundImage(imagemain,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.CENTER,
+                BackgroundSize.DEFAULT);
+		Background fond = new Background(bImg);
+		root.setBackground(fond);
+
+        Scene scene = new Scene(root, 800, 600);
+        primaryStage.setResizable(false);
+        primaryStage.setScene(scene);
+        
+		//___________________________________________________________________________________
+		//Boutons:
+		//___________________________________________________________________________________
+        
+		Button button1 = new Button("Competition");
+		button1.setTranslateX(70);
+		button1.setTranslateY(100);
+		button1.setStyle("-fx-border-color: transparent; -fx-background-color: #D6D6D6;");
+		button1.setOnAction(e -> {
+			primaryStage.setScene(scene1);
+		});	
+        button1.addEventHandler(MouseEvent.MOUSE_ENTERED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent e) {
+                button1.setStyle("-fx-border-color:transparent; -fx-background-color: grey; -fx-text-fill: white;");;
+            }
+        });
+
+        button1.addEventHandler(MouseEvent.MOUSE_EXITED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent e) {
+                button1.setStyle("-fx-border-color: transparent; -fx-background-color: #D6D6D6;");;
+            }
+        });
+		
+		
+//___________________________________________________________________________________
+//___________________________________________________________________________________
+//___________________________________________________________________________________
+//Fenetre compétition:
+//___________________________________________________________________________________
+//___________________________________________________________________________________
+//___________________________________________________________________________________
+		
+		Image home = new Image(new FileInputStream("C:\\Users\\Julien\\eclipse-workspace\\regisport\\src\\regisport/home.png"));
+		ImageView imagehome = new ImageView(home);
+		ImageView imagehomeadd = new ImageView(home);
+		imagehome.setFitHeight(50);
+		imagehome.setFitWidth(50);
+		imagehomeadd.setFitHeight(50);
+		imagehomeadd.setFitWidth(50);
+		Image homew = new Image(new FileInputStream("C:\\Users\\Julien\\eclipse-workspace\\regisport\\src\\regisport/homew.png"));
+		ImageView imagehomew = new ImageView(homew);
+		ImageView imagehomewadd = new ImageView(homew);
+		imagehomew.setFitHeight(50);
+		imagehomew.setFitWidth(50);
+		imagehomewadd.setFitHeight(50);
+		imagehomewadd.setFitWidth(50);
+		
+		//bouton retour menu
+		Button buttonhome = new Button();
+		buttonhome.setGraphic(imagehome);
+		buttonhome.setTranslateX(635);
+		buttonhome.setTranslateY(0);
+		buttonhome.setShape(new Circle(1.5));
+		buttonhome.setStyle("-fx-border-color: transparent; -fx-background-color: #D6D6D6;");
+        buttonhome.addEventHandler(MouseEvent.MOUSE_ENTERED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent e) {
+                buttonhome.setStyle("-fx-border-color: transparent; -fx-background-color: grey;");
+                buttonhome.setGraphic(imagehomew);
+            }
+        });
+
+        buttonhome.addEventHandler(MouseEvent.MOUSE_EXITED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent e) {
+                buttonhome.setStyle("-fx-border-color: transparent; -fx-background-color: #D6D6D6;");
+                buttonhome.setGraphic(imagehome);
+            }
+        });
+		
+		buttonhome.setPrefSize(50, 50);
+		buttonhome.setOnAction(e -> {
+			primaryStage.setScene(scene);
+		});
+		
+		Image back = new Image(new FileInputStream("C:\\Users\\Julien\\eclipse-workspace\\regisport\\src\\regisport/fleche.png"));
+		ImageView imageback = new ImageView(back);
+		ImageView imagebackadd = new ImageView(back);
+		imageback.setFitHeight(50);
+		imageback.setFitWidth(50);
+		imagebackadd.setFitHeight(50);
+		imagebackadd.setFitWidth(50);
+		Image backw = new Image(new FileInputStream("C:\\Users\\Julien\\eclipse-workspace\\regisport\\src\\regisport/flechew.png"));
+		ImageView imagebackw = new ImageView(backw);
+		ImageView imagebackwadd = new ImageView(backw);
+		imagebackw.setFitHeight(50);
+		imagebackw.setFitWidth(50);
+		imagebackwadd.setFitHeight(50);
+		imagebackwadd.setFitWidth(50);
+		
+		//bouton retour fenetre d'avant
+		Button buttonback = new Button();
+		buttonback.setGraphic(imageback);
+		buttonback.setTranslateX(0);
+		buttonback.setTranslateY(0);
+		buttonback.setStyle("-fx-border-color: transparent; -fx-background-color: #D6D6D6;");
+        buttonback.addEventHandler(MouseEvent.MOUSE_ENTERED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent e) {
+                buttonback.setStyle("-fx-border-color: transparent; -fx-background-color: grey;");
+                buttonback.setGraphic(imagebackw);
+            }
+        });
+
+        buttonback.addEventHandler(MouseEvent.MOUSE_EXITED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent e) {
+                buttonback.setStyle("-fx-border-color: transparent; -fx-background-color: #D6D6D6;");
+                buttonback.setGraphic(imageback);
+            }
+        });
+		
+		buttonback.setShape(new Circle(1.5));
+		buttonback.setPrefSize(50, 50);
+		buttonback.setOnAction(e -> {
+			primaryStage.setScene(scene);
+		});
+		
+		//bouton détails
+		
+		Button buttond = new Button("Détails");
+		buttond.setTranslateX(-120);
+		buttond.setTranslateY(250);
+		buttond.setStyle("-fx-border-color: transparent; -fx-background-color: #D6D6D6;");
+		buttond.setPrefSize(100, 45);
+        buttond.addEventHandler(MouseEvent.MOUSE_ENTERED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent e) {
+                buttond.setStyle("-fx-border-color:transparent; -fx-background-color: grey; -fx-text-fill: white;");;
+            }
+        });
+
+        buttond.addEventHandler(MouseEvent.MOUSE_EXITED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent e) {
+                buttond.setStyle("-fx-border-color: transparent; -fx-background-color: #D6D6D6;");;
+            }
+        });
+		
+		//bouton ajouter
+        
+		Button buttona= new Button("Ajouter");
+		buttona.setTranslateX(370);
+		buttona.setTranslateY(250);
+		buttona.setStyle("-fx-border-color: transparent; -fx-background-color: #D6D6D6;");
+		buttona.setPrefSize(100, 45);
+        buttona.addEventHandler(MouseEvent.MOUSE_ENTERED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent e) {
+                buttona.setStyle("-fx-border-color:transparent; -fx-background-color: grey; -fx-text-fill: white;");;
+            }
+        });
+
+        buttona.addEventHandler(MouseEvent.MOUSE_EXITED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent e) {
+                buttona.setStyle("-fx-border-color: transparent; -fx-background-color: #D6D6D6;");;
+            }
+        });
+		buttona.setOnAction(e -> {
+			primaryStage.setScene(sceneCompAdd);
+		});	
+		
+//___________________________________________________________________________________
+//___________________________________________________________________________________
+//Fenetre compétition Ajouter
+//___________________________________________________________________________________
+//___________________________________________________________________________________
+		
+		Button buttonhomeAdd = new Button();
+		buttonhomeAdd.setGraphic(imagehomeadd);
+		buttonhomeAdd.setTranslateX(711);
+		buttonhomeAdd.setTranslateY(0);
+		buttonhomeAdd.setShape(new Circle(1.5));
+		buttonhomeAdd.setStyle("-fx-border-color: transparent; -fx-background-color: #D6D6D6;");
+        buttonhomeAdd.addEventHandler(MouseEvent.MOUSE_ENTERED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent e) {
+                buttonhomeAdd.setStyle("-fx-border-color: transparent; -fx-background-color: grey;");
+                buttonhomeAdd.setGraphic(imagehomewadd);
+            }
+        });
+
+        buttonhomeAdd.addEventHandler(MouseEvent.MOUSE_EXITED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent e) {
+                buttonhomeAdd.setStyle("-fx-border-color: transparent; -fx-background-color: #D6D6D6;");
+                buttonhomeAdd.setGraphic(imagehomeadd);
+            }
+        });
+		
+		buttonhomeAdd.setPrefSize(50, 50);
+		buttonhomeAdd.setOnAction(e -> {
+			primaryStage.setScene(scene);
+		});
+		
+		//bouton retour fenetre d'avant
+		Button buttonbackAdd = new Button();
+		buttonbackAdd.setGraphic(imagebackadd);
+		buttonbackAdd.setTranslateX(0);
+		buttonbackAdd.setTranslateY(0);
+		buttonbackAdd.setStyle("-fx-border-color: transparent; -fx-background-color: #D6D6D6;");
+        buttonbackAdd.addEventHandler(MouseEvent.MOUSE_ENTERED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent e) {
+                buttonbackAdd.setStyle("-fx-border-color: transparent; -fx-background-color: grey;");
+                buttonbackAdd.setGraphic(imagebackwadd);
+            }
+        });
+
+        buttonbackAdd.addEventHandler(MouseEvent.MOUSE_EXITED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent e) {
+                buttonbackAdd.setStyle("-fx-border-color: transparent; -fx-background-color: #D6D6D6;");
+                buttonbackAdd.setGraphic(imagebackadd);
+            }
+        });
+		
+		buttonbackAdd.setShape(new Circle(1.5));
+		buttonbackAdd.setPrefSize(50, 50);
+		buttonbackAdd.setOnAction(e -> {
+			primaryStage.setScene(scene1);
+		});
+		
+		Label userName = new Label("Nom de la compétition:");
+		comp2.add(userName, 0, 6);
+		
+		TextField Nomcomp = new TextField();
+		comp2.add(Nomcomp, 1, 6);
+		
+		Label datedebut = new Label("Date de la compétition:");
+		comp2.add(datedebut, 0, 7);
+		DatePicker datePicker = new DatePicker(); 
+	    datePicker.setValue(LocalDate.MIN); 
+	    comp2.add(datePicker, 1, 7);
+	    
+		Label datefin = new Label("Date de la compétition:");
+		comp2.add(datefin, 0, 8);
+		DatePicker datePicker1 = new DatePicker(); 
+	    datePicker1.setValue(LocalDate.MIN); 
+	    comp2.add(datePicker1, 1, 8); 
+	    
+	    Label prix = new Label("Prix");
+		comp2.add(prix, 6, 7);
+		TextField prixc = new TextField();
+		comp2.add(prixc, 7, 7);
+		
+		Label ville = new Label("Ville");
+		comp2.add(ville, 6, 9);
+			
+		TextField villec = new TextField();
+		comp2.add(villec, 7, 9);
+		
+		
+//___________________________________________________________________________________
+//___________________________________________________________________________________
+//___________________________________________________________________________________
+//Fenetre Équipes
+//___________________________________________________________________________________
+//___________________________________________________________________________________
+//___________________________________________________________________________________
+
+		
+		Button button2 = new Button("Équipes");
+		button2.setTranslateX(245);
+		button2.setTranslateY(100);
+		button2.setStyle("-fx-border-color: transparent; -fx-background-color: #D6D6D6;");
+        button2.addEventHandler(MouseEvent.MOUSE_ENTERED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent e) {
+                button2.setStyle("-fx-border-color:transparent; -fx-background-color: grey; -fx-text-fill: white;");;
+            }
+        });
+
+        button2.addEventHandler(MouseEvent.MOUSE_EXITED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent e) {
+                button2.setStyle("-fx-border-color: transparent; -fx-background-color: #D6D6D6;");;
+            }
+        });
+        
+//___________________________________________________________________________________
+//___________________________________________________________________________________
+//___________________________________________________________________________________
+//Fenetre Adhérents:
+//___________________________________________________________________________________
+//___________________________________________________________________________________
+//___________________________________________________________________________________
+		
+		
+		Button button3 = new Button("Adhérents");
+		button3.setTranslateX(435);
+		button3.setTranslateY(100);
+		button3.setStyle("-fx-border-color: transparent; -fx-background-color: #D6D6D6;");
+        button3.addEventHandler(MouseEvent.MOUSE_ENTERED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent e) {
+                button3.setStyle("-fx-border-color:transparent; -fx-background-color: grey; -fx-text-fill: white;");;
+            }
+        });
+
+        button3.addEventHandler(MouseEvent.MOUSE_EXITED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent e) {
+                button3.setStyle("-fx-border-color: transparent; -fx-background-color: #D6D6D6;");;
+            }
+        });
+		
+		
+		
+        root.getChildren().addAll(button1,button2,button3);
+        comp1.getChildren().addAll(buttonback, buttonhome, buttond, buttona);
+        comp2.getChildren().addAll(buttonbackAdd, buttonhomeAdd);
+        
+		primaryStage.hide();
+		primaryStage.centerOnScreen();
+
+
+//___________________________________________________________________________________
+//___________________________________________________________________________________
+//___________________________________________________________________________________
+//Ecran de chargement
+//___________________________________________________________________________________
+//___________________________________________________________________________________
+//___________________________________________________________________________________
+				
+		
+		
+		Image image = new Image(new FileInputStream("C:\\Users\\Julien\\eclipse-workspace\\regisport\\src\\regisport/Logo Blanco.gif"));
+		ImageView imageview = new ImageView(image);
+	    imageview.setFitWidth(800);  
+	    imageview.setFitHeight(600); 
+	    imageview.setPreserveRatio(true); 
+		Group charge = new Group(imageview);
+		Scene img = new Scene(charge,800,600);
+		
+		if (image != null) {
+            double w = 0;
+            double h = 0;
+
+            double ratioX = imageview.getFitWidth() / image.getWidth();
+            double ratioY = imageview.getFitHeight() / image.getHeight();
+
+            double reducCoeff = 0;
+            if(ratioX >= ratioY) {
+                reducCoeff = ratioY;
+            } else {
+                reducCoeff = ratioX;
+            }
+
+            w = image.getWidth() * reducCoeff;
+            h = image.getHeight() * reducCoeff;
+
+            imageview.setX((imageview.getFitWidth() - w) / 2);
+            imageview.setY((imageview.getFitHeight() - h) / 2);
+
+        }
+		
+		Stage chargement = new Stage();
+		chargement.setTitle("Regisport");
+		chargement.getIcons().add(new Image("C:\\Users\\Julien\\eclipse-workspace\\regisport\\src\\regisport/icon.png"));
+		chargement.setScene(img);
+		chargement.setResizable(false);
+		chargement.show();
+		chargement.centerOnScreen();
+		
+		new Thread(() ->{
+				try {
+					Thread.sleep(3000);
+					Platform.runLater(()->chargement.hide());
+					Platform.runLater(()->primaryStage.show());
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}).start();
+		
+	}
+	
+    public static void main(String[] args) {
+        Application.launch(args);
+    }
+}
